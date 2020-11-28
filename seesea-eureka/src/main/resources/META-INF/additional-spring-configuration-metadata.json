@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "eureka.client.service-url.instance.lease-renewal-interval-in-seconds",
+      "type": "java.lang.String",
+      "description": "Description for eureka.client.service-url.instance.lease-renewal-interval-in-seconds."
+  }
+] }

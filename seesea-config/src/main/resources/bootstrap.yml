@@ -1,0 +1,130 @@
+server:
+  port: 8001
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    #没有心跳淘汰
+    lease-expiration-duration-in-seconds: 30
+    #心跳间隔
+    lease-renewal-interval-in-seconds: 10
+spring:
+    profiles:
+      active: home
+    application:
+      name: seesea-config
+    cloud:
+      bus:
+        enabled: true
+        trace:
+          enabled: true
+management:
+  endpoint:
+    bus-refresh:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+jasypt:
+  encryptor:
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
+---
+
+spring:
+  profiles: home
+  cloud:
+    config:
+      server:
+        git:
+          username: ENC(MI4aon5swokM5gi0cZXvCRSEfX6kAH+7)
+          password: ENC(x2747rDE4MYgPJ5zabLgNqWo+oM5Cow6)
+          #项目启动时从git拉取配置，拉取失败则项目停止并抛出异常。默认规则是使用时才拉取配置
+          clone-on-start: true
+          search-paths: ${application}
+          uri: ENC(rrWEZkxLJa8a7v/5z5cHxousRuSizZKMUKB4sJAG7dcyxtWmRbZ1pJzBq8H/SPaAw69KhTHhnmBvcxXdLQR2QXuunX71u/tP)
+          force-pull: true
+      label: master
+  rabbitmq:
+    addresses: ENC(X1raCTG0CPv9+2I+Re1gAky5cal8rkd6yATsCShJc2J9Io/y3Njk3M6egrlpgN4j5tJMBhtDmDPwVuEKj/iRUB2e2JX2q9dOlpJ7WkaZmLoR+eMGs/y5hX7R6GbjWiYj)
+    username: ENC(VQKwiNsXByzf6QQ/PV8yza4WS/u84eWN)
+    password: ENC(7wBJQjHeLubpy+yN1sp62h9LGS1NF69FSKW59Ad3/nymHM8bY9BRrX7A3X6cf7Te)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.3.3:8000/eureka/
+---
+
+spring:
+  profiles: local
+  cloud:
+    config:
+      server:
+        git:
+          username: ENC(MI4aon5swokM5gi0cZXvCRSEfX6kAH+7)
+          password: ENC(x2747rDE4MYgPJ5zabLgNqWo+oM5Cow6)
+          #项目启动时从git拉取配置，拉取失败则项目停止并抛出异常。默认规则是使用时才拉取配置
+          clone-on-start: true
+          search-paths: ${application}
+          uri: ENC(rrWEZkxLJa8a7v/5z5cHxousRuSizZKMUKB4sJAG7dcyxtWmRbZ1pJzBq8H/SPaAw69KhTHhnmBvcxXdLQR2QXuunX71u/tP)
+          force-pull: true
+      label: master
+  rabbitmq:
+    addresses: ENC(X1raCTG0CPv9+2I+Re1gAky5cal8rkd6yATsCShJc2J9Io/y3Njk3M6egrlpgN4j5tJMBhtDmDPwVuEKj/iRUB2e2JX2q9dOlpJ7WkaZmLoR+eMGs/y5hX7R6GbjWiYj)
+    username: ENC(VQKwiNsXByzf6QQ/PV8yza4WS/u84eWN)
+    password: ENC(7wBJQjHeLubpy+yN1sp62h9LGS1NF69FSKW59Ad3/nymHM8bY9BRrX7A3X6cf7Te)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.1.94.170:8000/eureka/
+
+---
+spring:
+  profiles: service
+  cloud:
+    config:
+      server:
+        git:
+          username: ENC(MI4aon5swokM5gi0cZXvCRSEfX6kAH+7)
+          password: ENC(x2747rDE4MYgPJ5zabLgNqWo+oM5Cow6)
+          #项目启动时从git拉取配置，拉取失败则项目停止并抛出异常。默认规则是使用时才拉取配置
+          clone-on-start: true
+          search-paths: ${application}
+          uri: ENC(rrWEZkxLJa8a7v/5z5cHxousRuSizZKMUKB4sJAG7dcyxtWmRbZ1pJzBq8H/SPaAw69KhTHhnmBvcxXdLQR2QXuunX71u/tP)
+          force-pull: true
+      label: master
+  rabbitmq:
+    addresses: ENC(X1raCTG0CPv9+2I+Re1gAky5cal8rkd6yATsCShJc2J9Io/y3Njk3M6egrlpgN4j5tJMBhtDmDPwVuEKj/iRUB2e2JX2q9dOlpJ7WkaZmLoR+eMGs/y5hX7R6GbjWiYj)
+    username: ENC(VQKwiNsXByzf6QQ/PV8yza4WS/u84eWN)
+    password: ENC(7wBJQjHeLubpy+yN1sp62h9LGS1NF69FSKW59Ad3/nymHM8bY9BRrX7A3X6cf7Te)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.3.3:8000/eureka/
+---
+
+
+spring:
+  profiles: wonder
+  cloud:
+    config:
+      server:
+        git:
+          username: ENC(MI4aon5swokM5gi0cZXvCRSEfX6kAH+7)
+          password: ENC(x2747rDE4MYgPJ5zabLgNqWo+oM5Cow6)
+          #项目启动时从git拉取配置，拉取失败则项目停止并抛出异常。默认规则是使用时才拉取配置
+          clone-on-start: true
+          search-paths: ${application}
+          uri: ENC(rrWEZkxLJa8a7v/5z5cHxousRuSizZKMUKB4sJAG7dcyxtWmRbZ1pJzBq8H/SPaAw69KhTHhnmBvcxXdLQR2QXuunX71u/tP)
+          force-pull: true
+      label: master
+  rabbitmq:
+    addresses: ENC(X1raCTG0CPv9+2I+Re1gAky5cal8rkd6yATsCShJc2J9Io/y3Njk3M6egrlpgN4j5tJMBhtDmDPwVuEKj/iRUB2e2JX2q9dOlpJ7WkaZmLoR+eMGs/y5hX7R6GbjWiYj)
+    username: ENC(VQKwiNsXByzf6QQ/PV8yza4WS/u84eWN)
+    password: ENC(7wBJQjHeLubpy+yN1sp62h9LGS1NF69FSKW59Ad3/nymHM8bY9BRrX7A3X6cf7Te)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.1.94.170:8000/eureka/

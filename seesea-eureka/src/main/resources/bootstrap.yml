@@ -1,0 +1,154 @@
+#server:
+#  port: 8000
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    fetch-registry: false
+##    registry-fetch-interval-seconds: 600
+##    eureka-server-connect-timeout-seconds: 600
+##    eureka-server-read-timeout-seconds: 600
+##    filter-only-up-instances: true
+##    eureka-connection-idle-timeout-seconds: 600
+##  server:
+##    peer-node-connect-timeout-ms: 600000
+##    peer-node-read-timeout-ms: 600000
+##  ${spring.cloud.client.ipAddress}
+##    lease-renewal-interval-in-seconds: 600
+##    lease-expiration-duration-in-seconds: 600
+##  instance:
+##    appname: ${spring.application.name}
+#spring:
+#    cloud:
+#      inetutils:
+#        timeout-seconds: 10
+#    profiles:
+#      active: dev
+#    application:
+#      name: seesea-eurka
+#---
+#
+#spring:
+#  profiles: dev
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8000/eureka/
+##  instance:
+##    instance-id: 192.168.1.105:8000
+##    hostname: 192.168.1.105
+#
+#---
+#
+#spring:
+#  profiles: pi
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://j4dk9i.natappfree.cc/
+##  instance:
+##    instance-id: 192.168.1.105:8000
+##    hostname: 192.168.1.108
+#
+#---
+#
+#spring:
+#  profiles: aws
+#  application:
+#    name: seesea-eurka-aws
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://j4dk9i.natappfree.cc/eureka/
+#      instance:
+#        hostname: 3.34.44.157
+#
+#---
+#---
+#spring:
+#  profiles: pi
+#eureka:
+#  instance:
+#    preferIpAddress: true
+#    hostname: eureka-pi
+#  client:
+#    service-url:
+##      defaultZone: http://192.168.3.3:8000/eureka/,http://192.168.3.6:8000/eureka/
+#      defaultZone: http://192.168.3.3:8000/eureka/
+#      instance:
+#        hostname: 192.168.3.4
+#        appname: eureka-pi
+server:
+  port: 8000
+eureka:
+  client:
+    register-withEureka: false
+    fetch-registry: false
+
+  server:
+#    关闭自我保护
+    enable-self-preservation: false
+
+spring:
+  application:
+    name: seesea-eureka
+  cloud:
+    inetutils:
+      timeout-seconds: 10
+  profiles:
+    active: local
+---
+spring:
+  profiles: service
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-server
+  client:
+    service-url:
+#      defaultZone: http://192.168.3.4:8000/eureka/,http://192.168.3.6:8000/eureka/
+      defaultZone: http://192.168.3.3:8000/eureka/
+      instance:
+        hostname: 192.168.3.3
+        appname: eureka-server
+        #没有心跳淘汰
+        lease-expiration-duration-in-seconds: 30
+        #心跳间隔
+        lease-renewal-interval-in-seconds: 10
+
+---
+spring:
+  profiles: local
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-server
+  client:
+    service-url:
+      #      defaultZone: http://192.168.3.4:8000/eureka/,http://192.168.3.6:8000/eureka/
+      defaultZone: http://127.0.0.1:8000/eureka/
+      instance:
+        hostname: 127.0.0.1
+        appname: eureka-server
+        #没有心跳淘汰
+        lease-expiration-duration-in-seconds: 30
+        #心跳间隔
+        lease-renewal-interval-in-seconds: 10
+---
+spring:
+  profiles: wonder
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka-server
+  client:
+    service-url:
+      #      defaultZone: http://192.168.3.4:8000/eureka/,http://192.168.3.6:8000/eureka/
+      defaultZone: http://10.1.94.170:8000/eureka/
+      instance:
+        hostname: 10.1.94.170
+        appname: eureka-server
+        #没有心跳淘汰
+        lease-expiration-duration-in-seconds: 30
+        #心跳间隔
+        lease-renewal-interval-in-seconds: 10
