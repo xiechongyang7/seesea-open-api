@@ -10,7 +10,7 @@ package com.seesea.seeseagateway.entity;
 public class Req {
 
     private String reqId;
-    private String orderId;
+    private String sequenceId;
     private String accountId;
     private String sign;
     private String serviceId;
@@ -32,12 +32,12 @@ public class Req {
         this.reqId = reqId;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getSequenceId() {
+        return sequenceId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setSequenceId(String sequenceId) {
+        this.sequenceId = sequenceId;
     }
 
     public String getAccountId() {

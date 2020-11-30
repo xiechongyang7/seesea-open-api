@@ -25,6 +25,8 @@ public class BaseLogger {
     public void logInfo(String reqId, String direct, Object logStr) {
         MDC.put("REQID", reqId);// 日志分表
         logger.info(String.format("[%s] [%s] [%s]", reqId, direct, logStr));
+        MDC.remove("REQID");// 日志分表
+
     }
 
     /**
@@ -37,5 +39,6 @@ public class BaseLogger {
     public void logError(String reqId, String direct, Exception logStr) {
         MDC.put("REQID", reqId);// 日志分表
         logger.error(String.format("[%s] [%s]", reqId, direct), logStr);
+        MDC.remove("REQID");// 日志分表
     }
 }

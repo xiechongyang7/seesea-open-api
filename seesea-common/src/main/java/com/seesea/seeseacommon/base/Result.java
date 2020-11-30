@@ -15,6 +15,10 @@ public class Result {
 
     private String reqId;
 
+    private String sequenceId;
+
+    private String accountId;
+
     private String code;
 
     private String msg;
@@ -27,6 +31,22 @@ public class Result {
 
     public void setReqId(String reqId) {
         this.reqId = reqId;
+    }
+
+    public String getSequenceId() {
+        return sequenceId;
+    }
+
+    public void setSequenceId(String sequenceId) {
+        this.sequenceId = sequenceId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getCode() {

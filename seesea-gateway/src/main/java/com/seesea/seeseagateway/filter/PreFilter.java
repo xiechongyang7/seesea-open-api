@@ -114,7 +114,7 @@ public class PreFilter extends ZuulFilter {
             LogUtil.logInfo(req.getReqId(), "网关请求日志", reqStr);
             thread.set(req);
 
-            String orderId = req.getOrderId();
+            String sequenceId = req.getSequenceId();
             String accountId = req.getAccountId();
             String serviceId = req.getServiceId();
             String reqData = req.getData();
@@ -124,7 +124,7 @@ public class PreFilter extends ZuulFilter {
              * 校验参数
              */
             if (
-                    StringUtil.isNull(orderId) ||
+                    StringUtil.isNull(sequenceId) ||
                             StringUtil.isNull(sign) ||
                             StringUtil.isNull(accountId) ||
                             StringUtil.isNull(serviceId) ||
@@ -184,11 +184,14 @@ public class PreFilter extends ZuulFilter {
                     throw new BizException(ResultCode.ER_1002);
                 }
             }
-
+            String forwardStr = req.getData();
+            JsonUtil.jsonAddParam(forwardStr,"reqId",reqId);
+            JsonUtil.jsonAddParam(forwardStr,"sequenceId",sequenceId);
+            JsonUtil.jsonAddParam(forwardStr,"accountId",accountId);
             /**
              * 转发
              */
-            final byte[] reqByte = reqStr.getBytes();
+            final byte[] reqByte = forwardStr.getBytes();
             ctx.setSendZuulResponse(true);
             ctx.setRequest(new HttpServletRequestWrapper(request) {
                                /**
@@ -228,7 +231,7 @@ public class PreFilter extends ZuulFilter {
         } finally {
             GatewayLog gatewayLog = new GatewayLog();
             gatewayLog.setReqId(reqId);
-            gatewayLog.setOrderId(req.getOrderId());
+            gatewayLog.setOrderId(req.getSequenceId());
             gatewayLog.setAccoutId(req.getAccountId());
 //                gatewayLog.setAppId(appId);
             gatewayLog.setServiceId(req.getServiceId());

@@ -13,6 +13,24 @@ import com.seesea.seeseacommon.common.ResultCode;
 public class ReqVoCommon {
 
     private String reqId;
+    private String sequenceId;
+    private String accountId;
+
+    public String getSequenceId() {
+        return sequenceId;
+    }
+
+    public void setSequenceId(String sequenceId) {
+        this.sequenceId = sequenceId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
     public String getReqId() {
         return reqId;
@@ -25,7 +43,9 @@ public class ReqVoCommon {
     @JsonIgnore
     public Result getResult() {
         Result result = new Result();
-        result.setReqId(reqId);
+        result.setReqId(accountId);
+        result.setSequenceId(sequenceId);
+        result.setAccountId(reqId);
         result.setCode(ResultCode.SUCCESS.code);
         result.setMsg(ResultCode.SUCCESS.msg);
         return result;
