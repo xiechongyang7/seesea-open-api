@@ -10,11 +10,11 @@ package com.seesea.seeseatest.bean;
 public class Req {
 
     private String reqId;
-    private String orderId;
+    private String sequenceId;
     private String accountId;
     private String sign;
     private String serviceId;
-    private String data;
+    private Object data;
 
     public String getServiceId() {
         return serviceId;
@@ -32,12 +32,12 @@ public class Req {
         this.reqId = reqId;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getSequenceId() {
+        return sequenceId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setSequenceId(String sequenceId) {
+        this.sequenceId = sequenceId;
     }
 
     public String getAccountId() {
@@ -57,11 +57,11 @@ public class Req {
     }
 
 
-    public String getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }

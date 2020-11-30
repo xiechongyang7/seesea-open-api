@@ -1,5 +1,7 @@
 server:
   port: 8002
+  servlet:
+    context-path: /gateway
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -41,11 +43,29 @@ management:
         include: 'refresh'
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+zuul:
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+  routes:
+    gateway:
+      path: /api
+      serviceId: seesea-gateway
+#
+#  zuul.routes.user.path=/user/**
+#  zuul.routes.user.serviceId=seesea-user
+
+
+
+logging:
+  level:
+    com.seesea.seeseagateway.mapper: debug
+
 ---
 spring:
   profiles: home
   datasource:
-    url: jdbc:mysql://192.168.3.3:3306/seesea
+    url: jdbc:mysql://192.168.3.3:3306/seesea?serverTimezone=UTC
     username: root
     password: mysql@123A
   cloud:

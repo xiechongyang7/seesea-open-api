@@ -231,7 +231,7 @@ public class PreFilter extends ZuulFilter {
         } finally {
             GatewayLog gatewayLog = new GatewayLog();
             gatewayLog.setReqId(reqId);
-            gatewayLog.setOrderId(req.getSequenceId());
+            gatewayLog.setSequenceId(req.getSequenceId());
             gatewayLog.setAccoutId(req.getAccountId());
 //                gatewayLog.setAppId(appId);
             gatewayLog.setServiceId(req.getServiceId());

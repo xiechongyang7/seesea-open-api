@@ -183,7 +183,7 @@ public class HttpUtils {
     /**
      * post json数据
      */
-    public static byte[] doPost(String url, String params, String scheme) {
+    public static byte[] doPost(String url, String params) {
         HttpClient client = null;
         HttpPost request = null;
         HttpHost proxy = null;

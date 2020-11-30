@@ -23,13 +23,13 @@ public class JsonUtil {
      * @return
      * @throws JsonProcessingException
      */
-    public static String objToJson(Object obj) {
+    public static String objToJson(Object obj) throws JsonProcessingException {
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
     /**
@@ -41,16 +41,16 @@ public class JsonUtil {
      * @return
      * @throws JsonProcessingException
      */
-    public static <T> T jsonToObj(String str, Class<T> clazz) {
+    public static <T> T jsonToObj(String str, Class<T> clazz) throws IOException {
         try {
             return objectMapper.readValue(str, clazz);
         } catch (IOException e) {
             e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
-    public static String jsonAddParam(String obj, String key, Object value) {
+    public static String jsonAddParam(String obj, String key, Object value) throws IOException {
         String str = null;
         Map<String, Object> map = jsonToObj(obj, Map.class);
         map.put(key, value);
@@ -58,7 +58,7 @@ public class JsonUtil {
         return str;
     }
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws IOException {
         Map map = jsonToObj("{\n" +
                 "    \"reqId\":\"1\",\n" +
                 "    \"serviceId\":\"1100001\",\n" +

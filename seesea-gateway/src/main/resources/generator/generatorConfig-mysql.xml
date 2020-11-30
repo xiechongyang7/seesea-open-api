@@ -49,7 +49,7 @@
         <!-- tableName：数据库表名，domainObjectName：生成文件名 ，schema：数据源-->
         <!--<table tableName="tb_login" domainObjectName="LoginPo"></table>-->
         <!--<table tableName="service_info" domainObjectName="ServiceInfo"></table>-->
-        <!--<table tableName="gateway_log" domainObjectName="GatewayLog"></table>-->
-        <table tableName="account_info" domainObjectName="AccountInfo"></table>
+        <table tableName="gateway_log" domainObjectName="GatewayLog"></table>
+        <!--<table tableName="account_info" domainObjectName="AccountInfo"></table>-->
     </context>
 </generatorConfiguration>

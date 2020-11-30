@@ -1,6 +1,8 @@
 package com.seesea.seeseagateway.entity;
 
 
+import java.util.Map;
+
 /**
 * @description
 * @since JDK1.8
