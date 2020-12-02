@@ -13,17 +13,17 @@ import java.util.Map;
  */
 public class Result {
 
+    private String code;
+
+    private String msg;
+
     private String reqId;
 
     private String sequenceId;
 
     private String accountId;
 
-    private String code;
-
-    private String msg;
-
-    private Map data;
+    private Map<String,Object> data;
 
     public String getReqId() {
         return reqId;
@@ -66,11 +66,11 @@ public class Result {
     }
 
 
-    public Map getData() {
+    public Map<String,Object> getData() {
         return data;
     }
 
-    public void setData(Map data) {
+    public void setData(Map<String,Object> data) {
         try {
             if (data.get("code") != null && !"".equals(data.get("code"))) {
                 setCode(data.get("code").toString());

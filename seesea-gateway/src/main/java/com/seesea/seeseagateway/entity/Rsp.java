@@ -2,6 +2,7 @@ package com.seesea.seeseagateway.entity;
 
 
 import java.util.Date;
+import java.util.Map;
 
 /**
 * @description
@@ -12,21 +13,18 @@ import java.util.Date;
 public class Rsp {
 
     private String code;
+
     private String msg;
 
-    private Date rspTime;
-    private String orderId;
     private String reqId;
-    private String data;
 
+    private String sequenceId;
 
-    public String getReqId() {
-        return reqId;
-    }
+    private String accountId;
 
-    public void setReqId(String reqId) {
-        this.reqId = reqId;
-    }
+    private Map<String,Object> data;
+
+    private Date rspTime = new Date();
 
     public String getCode() {
         return code;
@@ -44,27 +42,43 @@ public class Rsp {
         this.msg = msg;
     }
 
+    public String getReqId() {
+        return reqId;
+    }
+
+    public void setReqId(String reqId) {
+        this.reqId = reqId;
+    }
+
+    public String getSequenceId() {
+        return sequenceId;
+    }
+
+    public void setSequenceId(String sequenceId) {
+        this.sequenceId = sequenceId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public Map<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, Object> data) {
+        this.data = data;
+    }
+
     public Date getRspTime() {
         return rspTime;
     }
 
     public void setRspTime(Date rspTime) {
         this.rspTime = rspTime;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 }

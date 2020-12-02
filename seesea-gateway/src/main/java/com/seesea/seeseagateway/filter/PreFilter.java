@@ -1,6 +1,7 @@
 package com.seesea.seeseagateway.filter;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -141,10 +142,6 @@ public class PreFilter extends ZuulFilter {
             String sortStr = StringUtil.sortValue(req);
             String signStr = MD5Util.getMd5(sortStr + "&KEY=" + MD5Key);
             if (!sign.equals(signStr)) {
-//                rsp.setCode(ResultCode.ER_1001.code);
-//                rsp.setMsg(ResultCode.ER_1001.msg);
-//                ctx.setResponseBody(JsonUtil.objToJson(rsp));
-//                return null;
                 throw  new BizException(ResultCode.ER_1001);
             }
 
@@ -154,7 +151,6 @@ public class PreFilter extends ZuulFilter {
              */
             try{
                 String dataStr = AESUtil.decrypt(req.getData(), AESKey);
-//             dataStr = JsonUtil.jsonAddParam(dataStr, "reqId", reqParam.getReqId());
                 req.setData(dataStr);
             }catch (Exception e){
                 LogUtil.logError(reqId,"网关错误",e);
@@ -168,19 +164,11 @@ public class PreFilter extends ZuulFilter {
              */
             ServiceInfo serviceInfo = serviceInfoMapper.selectByPrimaryKey(serviceId);
             if (serviceInfo == null) {
-//                rsp.setCode(ResultCode.ER_1005.code);
-//                rsp.setMsg(ResultCode.ER_1005.msg);
-//                ctx.setResponseBody(JsonUtil.objToJson(rsp));
-//                return null;
                 throw new BizException(ResultCode.ER_1005);
             }
             if (serviceInfo.getIsCheck()) {
                 ICheckService iCheckService = SpringContextUtil.getBean("Check" + serviceId + "Impl", ICheckService.class);
                 if (iCheckService.check(req)) {
-//                    rsp.setCode(ResultCode.ER_1002.code);
-//                    rsp.setMsg(ResultCode.ER_1002.msg);
-//                    ctx.setResponseBody(JsonUtil.objToJson(rsp));
-//                    return null;
                     throw new BizException(ResultCode.ER_1002);
                 }
             }
@@ -225,24 +213,28 @@ public class PreFilter extends ZuulFilter {
                            }
             );
 
-        } catch (Exception e) {
+        } catch (BizException e) {
             LogUtil.logError(reqId,"网关处理错误",e);
-            throw new  ZuulException(e, 1,"");
+            rsp.setCode(e.errCode);
+            rsp.setMsg(e.getMessage());
+            try {
+                ctx.setResponseBody(JsonUtil.objToJson(rsp));
+            } catch (JsonProcessingException ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception ex){
+            throw new ZuulException(ex,0,"");
         } finally {
             GatewayLog gatewayLog = new GatewayLog();
             gatewayLog.setReqId(reqId);
             gatewayLog.setSequenceId(req.getSequenceId());
             gatewayLog.setAccoutId(req.getAccountId());
-//                gatewayLog.setAppId(appId);
             gatewayLog.setServiceId(req.getServiceId());
             gatewayLog.setAccountReqTime(new Date());
+            gatewayLog.setAppId("");
             gatewayLog.setReqTime(new Date());
             gatewayLog.setRspTime(new Date());
-//            if (!ResultCode.ER_1000.equals(rsp.getCode())) {
-//                gatewayLog.setErrCode(errCode);
-//                gatewayLog.setErrMsg(errMsg);
-//            }
-            gatewayMapper.insert(gatewayLog);
+            gatewayMapper.insertSelective(gatewayLog);
         }
 
         return null;

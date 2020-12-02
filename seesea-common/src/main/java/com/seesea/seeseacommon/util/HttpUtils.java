@@ -183,10 +183,11 @@ public class HttpUtils {
     /**
      * post json数据
      */
-    public static byte[] doPost(String url, String params) {
+    public static String doPost(String url, String params) {
         HttpClient client = null;
         HttpPost request = null;
         HttpHost proxy = null;
+        String rspStr = "";
         try {
 //            if (!"".equals(proxyHost)) {
 //                proxy = new HttpHost(proxyHost, Integer.valueOf(proxyPort), scheme);
@@ -205,13 +206,12 @@ public class HttpUtils {
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 logger.info("请求成功" + response.toString());
-                byte[] bytes = EntityUtils.toByteArray(response.getEntity());
-                return bytes;
-
+                rspStr = EntityUtils.toString(response.getEntity());
             } else {
                 logger.info("响应信息 response header: " + response.getAllHeaders());
-                return null;
+                rspStr = EntityUtils.toString(response.getEntity());
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -219,7 +219,7 @@ public class HttpUtils {
                 request.releaseConnection();
             }
         }
-        return null;
+        return rspStr;
     }
 
 

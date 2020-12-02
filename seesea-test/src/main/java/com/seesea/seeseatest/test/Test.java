@@ -1,5 +1,6 @@
 package com.seesea.seeseatest.test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seesea.seeseacommon.util.HttpUtils;
 import com.seesea.seeseacommon.util.JsonUtil;
 import com.seesea.seeseatest.bean.Req;
@@ -14,11 +15,12 @@ import java.util.Map;
  */
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         test1();
     }
     private final static String url = "http://127.0.0.1:8002/gateway/api";
-    private static void test1(){
+    private static void test1() throws JsonProcessingException {
+
 
         Req req = new Req();
 
@@ -28,13 +30,13 @@ public class Test {
         req.setServiceId("1000001");
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("aa","bb");
-        req.setData(map);
+//        req.setData("{\"aa\":\"bb\"}");
 
         String reqStr = JsonUtil.objToJson(req);
         System.out.println(reqStr);
 
 
-        byte[] bytes =  HttpUtils.doPost(url, reqStr);
-        System.out.println(new String(bytes));
+        String bytes =  HttpUtils.doPost(url, reqStr);
+        System.out.println(bytes);
     }
 }

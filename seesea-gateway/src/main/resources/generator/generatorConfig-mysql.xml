@@ -7,7 +7,7 @@
     <!--<properties resource="application.properties"/>-->
 
     <!-- MyBatis3Simple：不生成 Example相关类及方法 -->
-    <context id="mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <context id="mysql" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
@@ -27,9 +27,9 @@
 
         <!-- jdbc 连接配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.3.3:3306/seesea?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://10.1.8.193:3306/test?serverTimezone=UTC"
                         userId="root"
-                        password="mysql@123A">
+                        password="123456">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.seesea.seeseagateway.entity"

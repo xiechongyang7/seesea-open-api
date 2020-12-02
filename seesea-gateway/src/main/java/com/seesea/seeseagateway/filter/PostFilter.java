@@ -53,43 +53,39 @@ public class PostFilter extends ZuulFilter {
         Req req = PreFilter.thread.get();
         RequestContext ctx = RequestContext.getCurrentContext();
         boolean isSend = ctx.sendZuulResponse();
+        String rspBody = ctx.getResponseBody();
 
         GatewayLog gatewayLog = new GatewayLog();
 
         String rspStr = null;
-
+        Rsp rsp = new Rsp();
+        rsp.setReqId(req.getReqId());
+        rsp.setSequenceId(req.getSequenceId());
+        rsp.setAccountId(req.getAccountId());
         try {
             if (isSend) {
                 if (ctx.getResponseStatusCode() >= 200 && ctx.getResponseStatusCode() < 300) {
                     rspStr = StreamUtils.copyToString(ctx.getResponseDataStream(), Charset.forName("UTF-8"));
                     LogUtil.logInfo(req.getReqId(), "网关返回参数", rspStr);
-
                     /**
                      * 返回信息入库保存
                      */
                     Map map = JsonUtil.jsonToObj(rspStr, Map.class);
-                    Rsp rspParam = new Rsp();
-                    rspParam.setCode(map.get("code").toString());
-                    rspParam.setMsg(map.get("msg").toString());
-                    rspParam.setData(rspStr);
-                    rspParam.setRspTime(new Date());
-                    rspParam.setReqId(req.getReqId());
-
-
                     gatewayLog.setErrCode(map.get("code").toString());
                     gatewayLog.setErrMsg(map.get("msg").toString());
 
-
-                    ctx.setResponseBody(rspStr);
                 }else {
                     gatewayLog.setErrCode(ResultCode.ER_1008.code);
                     gatewayLog.setErrMsg(ResultCode.ER_1008.msg);
-                    throw new BizException(ResultCode.ER_1008);
+                    rsp.setCode(ResultCode.ER_1008.code);
+                    rsp.setCode(ResultCode.ER_1008.msg);
+
                 }
             }else {
                 gatewayLog.setErrCode(ResultCode.ER_1009.code);
                 gatewayLog.setErrMsg(ResultCode.ER_1009.msg);
-                throw new BizException(ResultCode.ER_1009);
+                rsp.setCode(ResultCode.ER_1009.code);
+                rsp.setCode(ResultCode.ER_1009.msg);
             }
         } catch (Exception e) {
             LogUtil.logError(req.getReqId(), "网关返回参数处理错误", e);
@@ -98,8 +94,9 @@ public class PostFilter extends ZuulFilter {
             gatewayLog.setRspTime(new Date());
             gatewayLog.setReqId(req.getReqId());
             gatewayMapper.updateByPrimaryKey(gatewayLog);
-
         }
+
+        ctx.setResponseBody(rspStr);
         return null;
     }
 }

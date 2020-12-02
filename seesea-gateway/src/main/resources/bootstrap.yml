@@ -31,7 +31,7 @@ spring:
   application:
     name: seesea-gateway
   profiles:
-    active: home
+    active: local
 eureka:
   client:
     register-with-eureka: true
@@ -94,14 +94,18 @@ my:
 
 spring:
   profiles: local
+  datasource:
+    url: jdbc:mysql://10.1.8.193:3306/test?serverTimezone=UTC
+    username: root
+    password: 123456
   cloud:
     config:
       label: master
-      profile: dev
+      profile: local
       discovery:
         enabled: true
         service-id: seesea-config
-      uri: http://localhost:8001
+      uri: http://10.1.94.170:8001
   rabbitmq:
     addresses: amqp://rmfntena:5IKC8mBMYuLR5Nnk5VTjakaXkuA4O6_t@mustang.rmq.cloudamqp.com/rmfntena
     username: rmfntena
@@ -110,7 +114,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://10.1.94.170:8000/eureka/
-
+my:
+  redis:
+    host: 13.125.100.22
+    password: redispwd
+    timeout: 30000
+    maxWait: 30000
 ---
 
 spring:
