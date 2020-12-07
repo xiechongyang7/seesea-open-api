@@ -106,16 +106,16 @@ public abstract class AbstractChannel extends BaseService implements ISmsChannel
         return HttpUtils.doPost(url, params, "HTTPS");
 
     }
-
-    /**
-     * json字符串请求
-     *
-     * @param url
-     * @param params
-     * @return
-     */
-    public byte[] doPost(String url, String params) {
-
-        return HttpUtils.doPost(url, params, "HTTPS");
-    }
+//
+//    /**
+//     * json字符串请求
+//     *
+//     * @param url
+//     * @param params
+//     * @return
+//     */
+//    public byte[] doPost(String url, String params) {
+//
+//        return HttpUtils.doPost(url, params, "HTTPS");
+//    }
 }

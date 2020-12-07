@@ -120,7 +120,8 @@ public class PreFilter extends ZuulFilter {
             String serviceId = req.getServiceId();
             String reqData = req.getData();
             String sign = req.getSign();
-
+            rsp.setAccountId(accountId);
+            rsp.setSequenceId(sequenceId);
             /**
              * 校验参数
              */
@@ -224,7 +225,8 @@ public class PreFilter extends ZuulFilter {
             }
         } catch (Exception ex){
             throw new ZuulException(ex,0,"");
-        } finally {
+        }
+        finally {
             GatewayLog gatewayLog = new GatewayLog();
             gatewayLog.setReqId(reqId);
             gatewayLog.setSequenceId(req.getSequenceId());

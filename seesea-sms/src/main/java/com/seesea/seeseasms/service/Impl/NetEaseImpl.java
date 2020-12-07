@@ -132,7 +132,7 @@ public class NetEaseImpl extends AbstractChannel {
             channelResultBo.setvCode(String.valueOf(vCode));
             channelResultBo.setMsg(mapResult.get("msg"));
             channelResultBo.setSendDate(rspData);
-        } catch (BizException e) {
+        } catch (Exception e) {
             logError(sendSmsVo.getReqId(), "发送短信异常", e);
             if (e instanceof BizException) {
                 BizException ex = (BizException) e;

@@ -47,7 +47,7 @@ public interface SmsChannelMapper {
      */
     int updateByPrimaryKey(SmsChannel record);
 
-    @Select("select * from tb_sms_channel where remainder = (select min(remainder) from tb_sms_channel where status = '1')")
+    @Select("select * from sms_channel where remainder = (select min(remainder) from sms_channel where status = '1')")
     List<SmsChannel> selectACanUseChannel();
 
 
@@ -56,6 +56,6 @@ public interface SmsChannelMapper {
      *
      * @return
      */
-    @Update("UPDATE tb_sms_channel set remainder = remainder-1")
+    @Update("UPDATE sms_channel set remainder = remainder-1")
     int updateChannlRemainder();
 }

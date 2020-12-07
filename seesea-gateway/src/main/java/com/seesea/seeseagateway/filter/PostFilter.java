@@ -53,7 +53,7 @@ public class PostFilter extends ZuulFilter {
         Req req = PreFilter.thread.get();
         RequestContext ctx = RequestContext.getCurrentContext();
         boolean isSend = ctx.sendZuulResponse();
-        String rspBody = ctx.getResponseBody();
+
 
         GatewayLog gatewayLog = new GatewayLog();
 
@@ -79,13 +79,16 @@ public class PostFilter extends ZuulFilter {
                     gatewayLog.setErrMsg(ResultCode.ER_1008.msg);
                     rsp.setCode(ResultCode.ER_1008.code);
                     rsp.setCode(ResultCode.ER_1008.msg);
-
                 }
             }else {
-                gatewayLog.setErrCode(ResultCode.ER_1009.code);
-                gatewayLog.setErrMsg(ResultCode.ER_1009.msg);
-                rsp.setCode(ResultCode.ER_1009.code);
-                rsp.setCode(ResultCode.ER_1009.msg);
+
+                String rspBody = ctx.getResponseBody();
+                Map map = JsonUtil.jsonToObj(rspBody, Map.class);
+                gatewayLog.setErrCode(map.get("code").toString());
+                gatewayLog.setErrMsg(map.get("msg").toString());
+                rsp.setCode(map.get("code").toString());
+                rsp.setCode(map.get("msg").toString());
+                rspStr = rspBody;
             }
         } catch (Exception e) {
             LogUtil.logError(req.getReqId(), "网关返回参数处理错误", e);

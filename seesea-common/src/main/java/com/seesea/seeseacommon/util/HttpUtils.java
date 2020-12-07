@@ -205,10 +205,10 @@ public class HttpUtils {
             HttpResponse response = client.execute(request);
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                logger.info("请求成功" + response.toString());
+                System.out.println("请求成功" + response.toString());
                 rspStr = EntityUtils.toString(response.getEntity());
             } else {
-                logger.info("响应信息 response header: " + response.getAllHeaders());
+                System.out.println("响应信息 response header: " + response.getAllHeaders());
                 rspStr = EntityUtils.toString(response.getEntity());
             }
 

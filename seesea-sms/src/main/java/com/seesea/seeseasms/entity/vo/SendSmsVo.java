@@ -1,6 +1,8 @@
 package com.seesea.seeseasms.entity.vo;
 
 import com.seesea.seeseacommon.base.ReqVoCommon;
+import com.seesea.seeseacommon.util.param.annotation.Allow;
+import com.seesea.seeseacommon.util.param.annotation.Type;
 
 /**
  * @Description
@@ -10,10 +12,10 @@ import com.seesea.seeseacommon.base.ReqVoCommon;
  */
 public class SendSmsVo extends ReqVoCommon {
 
-//    @Type(notNull = true, type = "PHONE")
+    @Type(notNull = true, type = "PHONE")
     private String phone;
 
-//    @Allow(notNull = true, allows = {"1"})
+    @Allow(notNull = true, allows = {"1"})
     private String workType;
 
     private String userId;

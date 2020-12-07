@@ -43,11 +43,27 @@ management:
         include: 'refresh'
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+url:
+  send:
+    netease: https://api.netease.im/sms/sendcode.action
+templateid:
+  send: 9394336
+expire:
+  time: 60
+limit:
+  send:
+    time: 86400
+    num: 3
+  check:
+    num: 3
+test:
+  send: true
+
 ---
 spring:
   profiles: home
   datasource:
-    url: jdbc:mysql://192.168.3.3:3306/seesea
+    url: jdbc:mysql://192.168.3.3:3306/seesea?serverTimezone=UTC
     username: root
     password: mysql@123A
   cloud:

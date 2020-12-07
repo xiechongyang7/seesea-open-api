@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.lang.annotation.Annotation;
@@ -26,6 +27,7 @@ import java.util.Map;
  * @Author xiechongyang
  */
 @Aspect
+@Component
 public class ControllerIntercept extends BaseController {
 
     @Value("${spring.application.name}")

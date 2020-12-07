@@ -16,6 +16,14 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args) throws JsonProcessingException {
+        /**
+         * 1 pre 异常
+         * 2 error 异常
+         * 3 post 异常
+         * 4 pre 异常 error 异常
+         * 5 error 异常 post 异常
+         * 6 post 异常 error 异常
+         */
         test1();
     }
     private final static String url = "http://127.0.0.1:8002/gateway/api";

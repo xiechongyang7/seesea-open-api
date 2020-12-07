@@ -27,9 +27,9 @@
 
         <!-- jdbc 连接配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.1.8.193:3306/test?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://192.168.3.3:3306/seesea?serverTimezone=UTC"
                         userId="root"
-                        password="123456">
+                        password="mysql@123A">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.seesea.seeseagateway.entity"

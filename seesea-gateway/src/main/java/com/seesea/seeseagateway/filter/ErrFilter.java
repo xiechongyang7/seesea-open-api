@@ -45,35 +45,30 @@ public class ErrFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-
         Req req = PreFilter.thread.get();
-
         RequestContext ctx = RequestContext.getCurrentContext();
-
         Throwable throwable = ctx.getThrowable();
-        LogUtil.logError(req.getReqId(),"网关异常处理器捕捉" , new Exception(throwable));
-
-        Rsp rsp = new Rsp();
-        rsp.setReqId(req.getReqId());
-        rsp.setSequenceId(req.getSequenceId());
-        rsp.setAccountId(req.getAccountId());
-        rsp.setCode(ResultCode.ER_1010.code);
-        rsp.setMsg(ResultCode.ER_1010.msg);
         String rspStr = "";
         try {
+            LogUtil.logError(req.getReqId(), "网关异常处理器捕捉", new Exception(throwable));
+            Rsp rsp = new Rsp();
+            rsp.setReqId(req.getReqId());
+            rsp.setSequenceId(req.getSequenceId());
+            rsp.setAccountId(req.getAccountId());
+            rsp.setCode(ResultCode.ER_1010.code);
+            rsp.setMsg(ResultCode.ER_1010.msg);
             rspStr = JsonUtil.objToJson(rsp);
-        } catch (JsonProcessingException e) {
-            LogUtil.logError(req.getReqId(),"异常处理器处理错误" , e);
-        }finally {
             GatewayLog gatewayLog = new GatewayLog();
             gatewayLog.setErrCode(rsp.getCode());
             gatewayLog.setErrCode(rsp.getMsg());
             gatewayLog.setRspTime(new Date());
             gatewayLog.setReqId(req.getReqId());
             gatewayMapper.updateByPrimaryKey(gatewayLog);
-            int a = 1/0;
+        } catch (Exception e) {
+            LogUtil.logError(req.getReqId(), "异常处理器处理错误", e);
+            //todo 拼接
+            rspStr = "{\"code\":\"1010\",\"msg\":\"网关未知异常\",\"reqId\":\"10202012072018406000\",\"sequenceId\":null,\"accountId\":null,\"data\":null,\"rspTime\":1607343520073}\n";
         }
-
         ctx.setResponseBody(rspStr);
         return null;
     }
