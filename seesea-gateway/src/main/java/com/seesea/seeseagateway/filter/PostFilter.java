@@ -87,16 +87,19 @@ public class PostFilter extends ZuulFilter {
                 gatewayLog.setErrCode(map.get("code").toString());
                 gatewayLog.setErrMsg(map.get("msg").toString());
                 rsp.setCode(map.get("code").toString());
-                rsp.setCode(map.get("msg").toString());
+                rsp.setMsg(map.get("msg").toString());
                 rspStr = rspBody;
             }
         } catch (Exception e) {
             LogUtil.logError(req.getReqId(), "网关返回参数处理错误", e);
-            throw new ZuulException(e, 1,"");
+//            throw new ZuulException(e, 1,"");
+            rspStr = "{\"code\":\"1010\",\"msg\":\"网关未知异常\",\"reqId\":\"10202012072018406000\",\"sequenceId\":null,\"accountId\":null,\"data\":null,\"rspTime\":1607343520073}\n";
         }finally {
+            gatewayLog.setReqId(req.getReqId());
+            gatewayLog.setSequenceId(req.getSequenceId());
             gatewayLog.setRspTime(new Date());
             gatewayLog.setReqId(req.getReqId());
-            gatewayMapper.updateByPrimaryKey(gatewayLog);
+            gatewayMapper.updateByPrimaryKeySelective(gatewayLog);
         }
 
         ctx.setResponseBody(rspStr);

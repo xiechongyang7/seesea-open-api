@@ -41,7 +41,7 @@ public class StringUtil {
             List<String> list = new ArrayList<String>();
             for (Field field : declaredFields) {
                 String name = field.getName();
-                if ("SIGN".equals(name.toUpperCase()) || "THIS$0".equals(name.toUpperCase()) || "SERIALVERSIONUID".equals(name.toUpperCase())) {
+                if ("REQID".equals(name.toUpperCase()) || "SIGN".equals(name.toUpperCase()) || "THIS$0".equals(name.toUpperCase()) || "SERIALVERSIONUID".equals(name.toUpperCase())) {
                     continue;
                 }
                 String methodName = "get" + name.substring(0, 1).toUpperCase() + name.substring(1);

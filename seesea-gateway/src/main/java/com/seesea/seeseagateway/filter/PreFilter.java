@@ -224,7 +224,14 @@ public class PreFilter extends ZuulFilter {
                 ex.printStackTrace();
             }
         } catch (Exception ex){
-            throw new ZuulException(ex,0,"");
+            LogUtil.logError(reqId,"网关处理错误",ex);
+            rsp.setCode(ResultCode.ER_1010.code);
+            rsp.setMsg(ResultCode.ER_1010.msg);
+            try {
+                ctx.setResponseBody(JsonUtil.objToJson(rsp));
+            } catch (JsonProcessingException exx) {
+                ex.printStackTrace();
+            }
         }
         finally {
             GatewayLog gatewayLog = new GatewayLog();
