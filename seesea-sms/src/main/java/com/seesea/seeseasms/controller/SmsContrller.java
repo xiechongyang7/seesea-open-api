@@ -7,9 +7,7 @@ import com.seesea.seeseasms.entity.vo.CheckSmsVo;
 import com.seesea.seeseasms.entity.vo.SendSmsVo;
 import com.seesea.seeseasms.service.ISmsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -28,8 +26,9 @@ public class SmsContrller extends BaseController {
     private ISmsService iSmsService;
 
     //    @HystrixCommand(fallbackMethod = "SendSmsfallbackMethod")
+    @ResponseBody
     @PostMapping(value = "/sendvcode")
-    public Object sendvcode(SendSmsVo sendSmsVo) throws BizException {
+    public Object sendvcode(@RequestBody SendSmsVo sendSmsVo) throws BizException {
 
         Result result = sendSmsVo.getResult();
         Map map = iSmsService.send(sendSmsVo);
@@ -39,6 +38,7 @@ public class SmsContrller extends BaseController {
 
     }
 
+    @ResponseBody
     @PostMapping(value = "/checkvcode")
     public Object checkvcode(CheckSmsVo checkSmsVo) throws BizException {
 
