@@ -16,6 +16,7 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Map;
@@ -78,10 +79,10 @@ public class PostFilter extends ZuulFilter {
                     gatewayLog.setErrCode(ResultCode.ER_1008.code);
                     gatewayLog.setErrMsg(ResultCode.ER_1008.msg);
                     rsp.setCode(ResultCode.ER_1008.code);
-                    rsp.setCode(ResultCode.ER_1008.msg);
+                    rsp.setMsg(ResultCode.ER_1008.msg);
+                    rspStr =  JsonUtil.objToJson(rsp);
                 }
             }else {
-
                 String rspBody = ctx.getResponseBody();
                 Map map = JsonUtil.jsonToObj(rspBody, Map.class);
                 gatewayLog.setErrCode(map.get("code").toString());
@@ -103,6 +104,9 @@ public class PostFilter extends ZuulFilter {
         }
 
         ctx.setResponseBody(rspStr);
+
+        String k =  ctx.getResponseBody();
+        HttpServletResponse response =  ctx.getResponse();
         return null;
     }
 }

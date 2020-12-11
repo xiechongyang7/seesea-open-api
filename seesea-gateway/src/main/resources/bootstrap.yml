@@ -51,6 +51,9 @@ zuul:
     gateway:
       path: /api
       serviceId: seesea-gateway
+    sms:
+      path: /sms/**
+      serviceId: seesea-sms
 #
 #  zuul.routes.user.path=/user/**
 #  zuul.routes.user.serviceId=seesea-user

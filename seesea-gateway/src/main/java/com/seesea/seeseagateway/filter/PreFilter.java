@@ -173,10 +173,12 @@ public class PreFilter extends ZuulFilter {
                     throw new BizException(ResultCode.ER_1002);
                 }
             }
+
             String forwardStr = req.getData();
-            JsonUtil.jsonAddParam(forwardStr,"reqId",reqId);
-            JsonUtil.jsonAddParam(forwardStr,"sequenceId",sequenceId);
-            JsonUtil.jsonAddParam(forwardStr,"accountId",accountId);
+            forwardStr = JsonUtil.jsonAddParam(forwardStr,"reqId",reqId);
+            forwardStr = JsonUtil.jsonAddParam(forwardStr,"sequenceId",sequenceId);
+            forwardStr = JsonUtil.jsonAddParam(forwardStr,"accountId",accountId);
+
             /**
              * 转发
              */
