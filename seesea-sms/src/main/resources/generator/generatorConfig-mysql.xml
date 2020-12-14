@@ -27,9 +27,9 @@
 
         <!-- jdbc 连接配置 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.3.3:3306/seesea?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://10.1.8.193:3306/test?serverTimezone=UTC"
                         userId="root"
-                        password="mysql@123A">
+                        password="123456">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="com.seesea.seeseasms.entity"
@@ -51,7 +51,7 @@
         <!--<table tableName="service_info" domainObjectName="ServiceInfo"></table>-->
         <!--<table tableName="gateway_log" domainObjectName="GatewayLog"></table>-->
         <table tableName="sms_channel" domainObjectName="SmsChannel"></table>
-        <table tableName="sms_log" domainObjectName="SmsLog"></table>
-        <table tableName="sms_send_check" domainObjectName="SmsSendCheck"></table>
+<!--        <table tableName="sms_log" domainObjectName="SmsLog"></table>-->
+<!--        <table tableName="sms_send_check" domainObjectName="SmsSendCheck"></table>-->
     </context>
 </generatorConfiguration>

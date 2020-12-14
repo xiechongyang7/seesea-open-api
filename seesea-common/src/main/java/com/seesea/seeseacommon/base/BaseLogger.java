@@ -12,7 +12,7 @@ import org.slf4j.MDC;
  */
 public class BaseLogger {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      *

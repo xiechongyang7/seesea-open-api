@@ -47,6 +47,7 @@ zuul:
   host:
     connect-timeout-millis: 30000
     socket-timeout-millis: 30000
+    connection-request-timeout-millis: 30000
   routes:
     gateway:
       path: /api
@@ -57,13 +58,12 @@ zuul:
 #
 #  zuul.routes.user.path=/user/**
 #  zuul.routes.user.serviceId=seesea-user
-
-
-
 logging:
   level:
     com.seesea.seeseagateway.mapper: debug
-
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
 ---
 spring:
   profiles: home

@@ -28,7 +28,7 @@ public class SmsContrller extends BaseController {
     //    @HystrixCommand(fallbackMethod = "SendSmsfallbackMethod")
     @ResponseBody
     @PostMapping(value = "/sendvcode")
-    public Object sendvcode(@RequestBody SendSmsVo sendSmsVo) throws BizException {
+    public Object sendvcode(SendSmsVo sendSmsVo) throws BizException {
 
         Result result = sendSmsVo.getResult();
         Map map = iSmsService.send(sendSmsVo);

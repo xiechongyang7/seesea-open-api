@@ -3,6 +3,7 @@ package com.seesea.seeseacommon.util.spring;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,7 +13,6 @@ import java.util.Map;
  * @Createtime 2018/9/15 下午 2:28
  * @Author xiechongyang
  */
-//@Component
 public class SpringContextUtil implements ApplicationContextAware {
 
 
@@ -21,7 +21,7 @@ public class SpringContextUtil implements ApplicationContextAware {
      */
     private static ApplicationContext applicationContext;
 
-//    @Override
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }

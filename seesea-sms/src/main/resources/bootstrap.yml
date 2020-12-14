@@ -43,6 +43,8 @@ management:
         include: 'refresh'
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 url:
   send:
     netease: https://api.netease.im/sms/sendcode.action
@@ -59,6 +61,10 @@ limit:
 test:
   send: true
 
+
+logging:
+  level:
+    com.seesea.seeseasms.mapper: debug
 ---
 spring:
   profiles: home

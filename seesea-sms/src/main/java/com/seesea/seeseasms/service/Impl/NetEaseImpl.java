@@ -29,7 +29,7 @@ import java.util.Map;
  * @Createtime 2018/10/25 上午 12:15
  * @Author xiechongyang
  */
-@Service
+@Service(value = "netEaseImpl")
 public class NetEaseImpl extends AbstractChannel {
 
     //发送验证码的请求路径URL
