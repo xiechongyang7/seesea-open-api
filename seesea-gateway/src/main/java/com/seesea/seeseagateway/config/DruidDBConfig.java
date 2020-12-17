@@ -3,6 +3,7 @@ package com.seesea.seeseagateway.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
+import com.seesea.seeseacommon.util.spring.SpringContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -127,5 +128,8 @@ public class DruidDBConfig {
         return reg;
     }
 
-
+    @Bean
+    public SpringContextUtil getSpringContextUtil() {
+        return new SpringContextUtil();
+    }
 }

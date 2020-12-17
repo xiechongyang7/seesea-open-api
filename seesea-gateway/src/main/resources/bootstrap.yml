@@ -55,6 +55,9 @@ zuul:
     sms:
       path: /sms/**
       serviceId: seesea-sms
+feign:
+  httpclient:
+    connection-timeout: 60000
 #
 #  zuul.routes.user.path=/user/**
 #  zuul.routes.user.serviceId=seesea-user

@@ -1,0 +1,48 @@
+server:
+  port: 8004
+  servlet:
+    context-path: /billing
+spring:
+  application:
+    name: seesea-billing
+  profiles:
+    active: local
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+---
+
+spring:
+  profiles: home
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.3.3:8000/eureka/
+---
+
+spring:
+  profiles: local
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.1.94.170:8000/eureka/
+---
+
+spring:
+  profiles: service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.3.3:8000/eureka/
+---
+
+spring:
+  profiles: wonder
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.3.3:8000/eureka/
+
+

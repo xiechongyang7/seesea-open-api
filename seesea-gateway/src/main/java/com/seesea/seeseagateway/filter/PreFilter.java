@@ -169,7 +169,7 @@ public class PreFilter extends ZuulFilter {
             }
             if (serviceInfo.getIsCheck()) {
                 ICheckService iCheckService = SpringContextUtil.getBean("Check" + serviceId + "Impl", ICheckService.class);
-                if (iCheckService.check(req)) {
+                if (!iCheckService.check(req)) {
                     throw new BizException(ResultCode.ER_1002);
                 }
             }
