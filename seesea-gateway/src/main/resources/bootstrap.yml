@@ -100,6 +100,11 @@ my:
 
 spring:
   profiles: local
+  zipkin:
+    base-url: http://10.1.94.170:9411
+  sleuth:
+    sampler:
+      probability: 1.0
   datasource:
     url: jdbc:mysql://10.1.8.193:3306/test?serverTimezone=UTC
     username: root

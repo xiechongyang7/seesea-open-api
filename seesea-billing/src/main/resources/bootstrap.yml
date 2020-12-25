@@ -24,6 +24,11 @@ eureka:
 
 spring:
   profiles: local
+  zipkin:
+    base-url: http://10.1.94.170:9411
+  sleuth:
+    sampler:
+      probability: 1.0
 eureka:
   client:
     service-url:
