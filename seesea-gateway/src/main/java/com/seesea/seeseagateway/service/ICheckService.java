@@ -1,5 +1,6 @@
 package com.seesea.seeseagateway.service;
 
+import com.seesea.seeseacommon.base.BaseLogger;
 import com.seesea.seeseagateway.entity.Req;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * @Author xiechongyang
  */
 @Service
-public interface ICheckService {
+public interface ICheckService  {
 
     /**
      * 鉴权

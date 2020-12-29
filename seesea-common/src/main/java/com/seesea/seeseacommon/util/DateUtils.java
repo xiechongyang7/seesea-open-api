@@ -59,14 +59,14 @@ public class DateUtils {
     }
 
     public static void main(String arg[]) {
-//        try {
-//            int i  = (int) get("2019-02-05");
-//            System.out.println(i+"天过年");
-//            System.out.println(i/7+"周");
-//            System.out.println(i-(i/7)*2+"天上班");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            int i  = (int) get("2020-12-29");
+            System.out.println(i+"天过年");
+            System.out.println(i/7+"周");
+            System.out.println(i-(i/7)*2+"天上班");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
 //        System.out.println(153.0/7.0);
 //        System.out.println(153-(21+12));

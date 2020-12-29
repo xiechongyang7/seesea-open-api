@@ -1,5 +1,6 @@
 package com.seesea.seeseagateway.service.impl;
 
+import com.seesea.seeseacommon.base.BaseLogger;
 import com.seesea.seeseafegin.api.BillingApi;
 import com.seesea.seeseafegin.entity.BillingVo;
 import com.seesea.seeseagateway.entity.Req;
@@ -15,7 +16,7 @@ import javax.xml.ws.Action;
  * @createTime: 2020/12/17 15:55
  */
 @Service(value = "Check1000001Impl")
-public class Check1000001Impl implements ICheckService {
+public class Check1000001Impl extends BaseLogger implements ICheckService  {
 
     @Autowired
     private BillingApi api;
@@ -30,6 +31,7 @@ public class Check1000001Impl implements ICheckService {
             vo.setReqId(req.getReqId());
 
             a = api.billing(vo);
+            logger.info("校验"  +  (a?"成功":"失败"));
         } catch (Exception e) {
             e.printStackTrace();
         }

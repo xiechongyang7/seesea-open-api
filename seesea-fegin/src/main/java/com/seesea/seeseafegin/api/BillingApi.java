@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author: xcy
  * @createTime: 2020/12/17 15:34
  */
-@FeignClient("seesea-billing")
+@FeignClient(value = "seesea-billing",fallback = FeignClientFallbackFactory.class)
 public interface BillingApi {
 
     @PostMapping(value = "/billing/v1/billing")
