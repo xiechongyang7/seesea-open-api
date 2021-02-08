@@ -20,7 +20,11 @@ public class CalculationService {
 //        calculation(new BigDecimal("39.8108"),new BigDecimal("37.6714"),"2020-11-24","2020-12-28",1);
 //        calculation(new BigDecimal("46.9909"),new BigDecimal("47.007"),"2020-12-23","2020-12-29",2);
 //        calculation(new BigDecimal("16.673"),new BigDecimal("20.184"),"2020-12-29","2020-12-31",3);
-        calculation(new BigDecimal("3.3516"),new BigDecimal("3.5648"),"2020-12-29","2021-01-05",32);
+//        calculation(new BigDecimal("12.8953"),new BigDecimal("13.5612"),"2021-01-07","2021-01-08",2);
+//        calculation(new BigDecimal("42.6109"),new BigDecimal("44.9041"),"2021-01-11","2021-01-12",1);
+//        calculation(new BigDecimal("13.0169"),new BigDecimal("11.5315"),"2021-01-13","2021-01-19",3);
+//        calculation(new BigDecimal("19.1054"),new BigDecimal("18.5860"),"2021-01-20","2021-01-25",2);
+        calculation(new BigDecimal("27.4494"),new BigDecimal("20.9153"),"2021-01-06","2021-02-05",9);
 
 //        count(
 //                "-29.4\n" +
@@ -28,6 +32,15 @@ public class CalculationService {
 //                "-1512.57\n" +
 //                "-213.94\n"
 //
+//        );
+
+//                count(
+//"0\n" +
+//        "260\n" +
+//        "0\n" +
+//        "30372.30\n" +
+//        "20158.14\n" +
+//        "47375.41"
 //        );
     }
 
